@@ -1,0 +1,41 @@
+Certainly! Here are your notes formatted into Markdown:
+
+### Adding Same Component (Header and Footer) into All Pages
+
+To add the same component, such as a header and footer, to all pages, we can use the `{% include "" %}` tag in the HTML pages where we want the header and footer.
+
+Example:
+```html
+{% include "header.html" %}
+<!-- Main content of the page goes here -->
+{% include "footer.html" %}
+```
+
+### Using Extends Method for Header and Footer
+
+If we want to create a base template (base.html) that includes both the header and footer, and only exchange the inner content, we use the `extends` method.
+
+1. Create `header.html` and `footer.html`.
+
+2. Create `base.html` and include `{% block %}` sections for dynamic content:
+   ```html
+   {% include "header.html" %}
+   {% block content %}{% endblock %}
+   {% include "footer.html" %}
+   ```
+
+### Connecting Pages Using Extends
+
+To connect pages and use the base template (`base.html`):
+
+1. Extend `base.html` in the specific page's HTML file.
+
+2. Define `{% block %}` sections to replace content in `base.html`:
+   ```html
+   {% extends "base.html" %}
+   {% block content %}
+   <!-- Inner content specific to this page -->
+   {% endblock %}
+   ```
+
+Note: Replace `"content"` with the appropriate block name used in `base.html`.

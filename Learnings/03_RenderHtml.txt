@@ -1,0 +1,54 @@
+To render an HTML page in response in Django views, we can follow these steps:
+### Setting Up Templates
+
+1. **Create a Templates Directory:**
+   - Create a directory named `templates` in your Django app directory.
+   - This directory will store all your HTML templates.
+
+2. **Configure `settings.py`:**
+   - Add the templates directory to the `DIRS` list in the `TEMPLATES` setting in your `settings.py` file. For example:
+     ```python
+     TEMPLATES = [
+         {
+             ...
+             'DIRS': [os.path.join(BASE_DIR, 'templates')],
+             ...
+         },
+     ]
+     ```
+   - Ensure `django.template.context_processors.request` is included in the `context_processors` option under `OPTIONS` in the same setting.
+
+### Rendering HTML in Views
+
+3. **Import Required Modules:**
+   - Import the `render` function from Django shortcuts in your `views.py`:
+     ```python
+     from django.shortcuts import render
+     ```
+
+4. **Create a View:**
+   - Define a view function in `views.py` that renders the HTML page:
+     ```python
+     from django.shortcuts import render
+
+     def index(request):
+         return render(request, 'index.html')  # Note render fun take two parameter req and file name.
+     ```
+
+5. **URL Configuration:**
+   - Connect the view function to a URL by editing `urls.py`:
+     ```python
+     from django.urls import path
+     from . import views
+
+     urlpatterns = [
+         path('', views.index, name='index'),
+         # Add other paths as needed
+     ]
+     ```
+
+### Explanation
+- **Templates Directory:** This is where all your HTML files will reside.
+- **Settings Configuration:** Configuring `settings.py` ensures Django knows where to find your templates.
+- **Render Function:** `render(request, 'index.html')` loads `index.html` from the templates directory and renders it as a response to the client's request.
+- **URL Configuration:** Maps a URL path (like `/`) to the corresponding view function (`views.index` in this case).

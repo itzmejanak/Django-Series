@@ -1,0 +1,37 @@
+```markdown
+### Dynamic URLs in Django
+
+In Django, we can create dynamic URLs where the URL pattern changes based on the input provided. This is useful for cases where we have a single HTML page, but the URL varies according to different parameters.
+
+#### Types of Parameters
+
+- `int`: Integer values
+- `str`: String values
+- `slug`: Slug values
+
+### Creating Dynamic URLs
+
+To create dynamic URLs, we need to define a path name with parameters inside angle brackets (`<>`). We also need to create a views function that accepts these parameters.
+
+#### Example
+
+In `views.py`:
+
+```python
+from django.http import HttpResponse
+
+def dynamicPage(req, data):
+    return HttpResponse(data)
+```
+
+In `urls.py`:
+
+```python
+from django.urls import path
+import views
+
+urlpatterns = [
+    path("dynamicpage/<int:data>", views.dynamicPage),
+    # We can change the type of values as needed, e.g., <str:data>, <slug:data>
+]
+```

@@ -1,0 +1,31 @@
+### Django Project Setup
+
+- `django-admin startproject <name>`: Creates a new Django project with the specified name
+- `python manage.py runserver`: Starts the Django development server
+- `python manage.py makemigrations`: Generates migration files based on the changes in your models
+- `python manage.py migrate`: Applies the migration files to the database
+- `python manage.py createsuperuser`: Creates a Django admin superuser account
+
+### URLs
+
+- URLs are the pages which provide users with navigation to specific pages.
+
+### Views
+
+- Views run through URLs, meaning if we have a URL, for example, "About Us", the URL will specify which view to open.
+- Views work with HTTP methods where URLs are connected to the views.
+- Views prepare the data and display it on an HTML page.
+
+#### Types of Views
+
+1. Function-based views
+2. Class-based views
+
+### Routing in Django
+
+1. Create the `views.py` file and return an `HttpResponse` from a method within the views.
+2. Configure the `urls.py` file by adding the necessary paths.
+3. Access the views function by importing the `views.py` into `urls.py`.
+
+### Working:
+- When a user requests the /admin URL, Django's URL resolver matches it to a predefined pattern in urls.py, which points to the admin application's view. This view handles user authentication and authorization, retrieves data from the database, and renders the admin interface's HTML template. The completed HTML response is then returned to the user's web browser, displaying the Django admin interface for the user to interact with.

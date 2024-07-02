@@ -1,0 +1,3 @@
+passing data from a view to a tamplate
+for that we will make dictainary into views.py for the specific function
+

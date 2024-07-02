@@ -1,0 +1,45 @@
+### Managing Static Files
+
+Managing static files such as CSS, JS, images, and fonts in Django involves the following steps:
+
+1. **Configuring Settings:**
+   Before working with static files, add their directories to `settings.py` in `STATICFILES_DIRS`.
+
+   ```python
+   STATICFILES_DIRS = [
+       os.path.join(BASE_DIR, "static")
+   ]
+   ```
+
+2. **Creating the Static Folder:**
+   Create a `static` folder in your Django project where you will store all CSS, JS, images, fonts, etc.
+
+3. **Organizing Files:**
+   Place all CSS, JS, images, fonts, etc., into the `static` folder.
+
+4. **Referencing Static Files:**
+   To reference static files in your templates or code, use the `{% static %}` template tag. There are two methods to do this:
+
+   - **Direct Path Method:**
+     Prefix the path of the resource with `/static/`.
+
+     Example:
+     ```html
+     <link rel="stylesheet" href="/static/css/style.css">
+     <script src="/static/js/script.js"></script>
+     <img src="/static/img/icon.png" alt="Icon">
+     ```
+
+   - **Template Tag Method:**
+     Load the `static` tag at the beginning of your HTML file and use the `{% static %}` template tag to refer to the files.
+
+     Example:
+     ```html
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <script src="{% static 'js/script.js' %}"></script>
+     <img src="{% static 'img/icon.png' %}" alt="Icon">
+     ```
+
+   Ensure that the paths specified in `{% static %}` match the structure inside your `static` folder.
+```
