@@ -1,0 +1,38 @@
+## HTTP Methods
+
+### GET
+- Not secure
+- Data goes through URL
+
+### POST
+- Secure
+- Data goes through HTML body
+
+### Form Submission
+
+Let's create a form and send data to the server By Get method.
+
+1. Use the `form` tag and use method.
+2. Inside it, use `label` and `input` tags correspondingly.
+3. At the end, use a `submit` type button.
+
+**Note**: Try to make the form in a separate HTML file because we can extend the header, footer, and other stuff on that page.
+
+### Handling Form Submission in `views.py`
+
+In the method of `views.py` where `form.html` is being called, we will take the submitted data into that function. We have to use a try-catch block in case any error occurs.
+
+### Inside the `try` Block
+We can use the request parameter to access the incoming form values like this:
+
+**Note**: It is necessary to give the input field a name because we will use that name to get data from that field.
+
+```python
+def userForm(request):
+    try:
+        n1 = request.GET.get("num1")
+        n2 = request.GET.get("num2")
+        print(n1, n2)
+    except:
+        pass
+    return render(request, "form.html")

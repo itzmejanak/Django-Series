@@ -19,10 +19,14 @@ from django.urls import path
 from TestProject import views
 
 urlpatterns = [
+    path('', views.home),
     path('admin/', admin.site.urls),
     path('test/', views.TestRoute),
     path('dynamic/<int:data>', views.DynamicRoute),
     path('html/', views.RenderHtml),
     path('data/', views.DataHtml),
     path('statics/', views.StaticLearn),
+    path('home/', views.home, name='home'),
+    path('about/', views.About, name='project'),
+    path('form/', views.Form, name='form'),
 ]

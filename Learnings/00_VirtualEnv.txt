@@ -1,0 +1,9 @@
+python -m venv <venv_name>
+cd scrpits
+and activate the venv
+
+now install required library and other stuff
+- l
+pip install Django
+
+and done

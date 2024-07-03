@@ -1,0 +1,28 @@
+### Making Active or Highlighted Header Navigation Section
+
+To highlight or make the header navigation section active based on the current path, follow these steps:
+
+1. **Write the CSS for the Active Class**
+   Create the CSS for the active state:
+   ```css
+   .active {
+       /* Add your active state design here */
+       color: #ffffff;
+       background-color: #007bff;
+   }
+   ```
+
+2. **Use `request.path` in Django**
+
+   In `header.html`, use `request.path` to determine the current path and apply the active class conditionally:
+
+   ```html
+   <li class="{% if request.path == '/home' %} active {% endif %}">
+       <a href="{% url 'home' %}">Home</a>
+   </li>
+   ```
+
+   Explanation:
+   - In the `<li>` tag, there's a nested `<a>` tag.
+   - Using an `{% if %}` statement, check if `request.path` matches the current visiting path.
+   - If it matches, apply the `.active` CSS class.

@@ -1,0 +1,17 @@
+<!-- form.html -->
+{% extends "base.html" %}
+{% block content %}
+<form method="get">
+    <label for="num1">Number 1:</label>
+    <input type="text" id="num1" name="num1" required>
+    
+    <label for="num2">Number 2:</label>
+    <input type="text" id="num2" name="num2" required>
+    
+    <button type="submit">Submit</button>
+    <br>
+    <br>
+    <h3 style="text-align: center;">Result</h3>
+    <h2 style="text-align: center;">{{ans}}</h2>
+</form>
+{% endblock %}

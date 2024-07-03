@@ -1,0 +1,40 @@
+### Data Submission by POST Method
+
+To submit data through the POST method, we will use a CSRF token, which helps protect us from spamming by hackers.
+
+### Steps
+
+1. Do the same as with the GET method but change the method of the form to POST.
+2. Inside the form, use `{% csrf_token %}`. That's it from the submission side.
+
+### Server-Side Handling
+
+To handle the submitted data on the server side, change `request.GET` to `request.POST`.
+
+### Example
+
+```html
+<!-- form.html -->
+<form method="post">
+    {% csrf_token %}
+    <label for="num1">Number 1:</label>
+    <input type="text" id="num1" name="num1">
+    
+    <label for="num2">Number 2:</label>
+    <input type="text" id="num2" name="num2">
+    
+    <button type="submit">Submit</button>
+</form>
+```
+
+```python
+# views.py
+def userForm(request):
+    try:
+        n1 = request.POST.get("num1")
+        n2 = request.POST.get("num2")
+        print(n1, n2)
+    except:
+        pass
+    return render(request, "form.html")
+```

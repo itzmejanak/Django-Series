@@ -1,0 +1,61 @@
+Here are your notes on the use of the form action attribute, formatted into Markdown:
+
+```markdown
+# Form Action Attribute
+
+By using the form action attribute, we can send the input data of the user to another page. By default, the form data is sent to the URL of the page where the form is located, but using the action attribute, we can send data to a different page.
+
+## Steps
+
+1. Add the action attribute with the name of the path defined in `urls.py`.
+2. Use the URL template tag to dynamically generate the URL in the action attribute.
+
+### Example
+
+1. Define the path in `urls.py`:
+
+```python
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('submit/', views.submitForm, name='submitForm'),
+]
+```
+
+2. Add the action attribute in the form:
+
+```html
+<!-- form.html -->
+<form method="post" action="{% url 'submitForm' %}">
+    {% csrf_token %}
+    <label for="num1">Number 1:</label>
+    <input type="text" id="num1" name="num1">
+    
+    <label for="num2">Number 2:</label>
+    <input type="text" id="num2" name="num2">
+    
+    <button type="submit">Submit</button>
+</form>
+```
+
+3. Handle the request in the corresponding view function:
+
+```python
+# views.py
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+def submitForm(request):
+    try:
+        n1 = request.POST.get("num1")
+        n2 = request.POST.get("num2")
+        # Process data here
+        data = some_processed_data  # Replace with actual data
+        url = '/home/?output={}'.format(data)
+        return HttpResponseRedirect(url)
+    except:
+        pass
+    return render(request, "form.html")
+```

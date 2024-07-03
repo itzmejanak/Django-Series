@@ -18,3 +18,21 @@ def DataHtml(req):
 
 def StaticLearn(req):
     return render(req, 'static.html')
+
+
+def home(req):
+    return render(req, 'home.html')
+
+def About(req):
+    return render(req, 'about.html')
+
+def Form(req):
+    ans = 0
+    try:
+        n1 = int(req.GET.get("num1"))
+        n2 = int(req.GET.get("num2"))
+        ans = n1+n2
+        print(ans)
+    except:
+        pass
+    return render(req, 'form.html', {"ans":ans})

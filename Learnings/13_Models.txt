@@ -1,0 +1,64 @@
+## Models in Django
+
+- Models represent the table in the database.
+
+### Steps to Create and Migrate Models
+
+1. **Define the Models**: After defining the models, you need to create migrations to generate the schema. Then, apply these migrations using the `migrate` command to generate the table.
+
+2. **Generate a New App**: To generate a `models.py` or an app for specific services, use the following command:
+   ```bash
+   python manage.py startapp <app_name>
+   ```
+
+### Creating a Model
+
+1. **Define the Model**:
+   - Open `models.py` and import `models` from `django.db`.
+
+   ```python
+   from django.db import models
+
+   class Services(models.Model):
+       # Define table field names
+       icon = models.CharField(max_length=50)
+       # Add other fields as needed
+   ```
+
+   **Note**: The primary key `id` will be generated automatically and will auto-increment by default.
+
+2. **Configure the App**:
+   - Add the created app to `INSTALLED_APPS` in `settings.py`:
+     ```python
+     INSTALLED_APPS = [
+         'services',  # Add the app name here
+     ]
+     ```
+
+3. **Make Migrations**:
+   - Convert the model to a migration and then migrate to convert it into a table:
+     ```bash
+     python manage.py makemigrations
+     python manage.py migrate
+     ```
+
+### Register the Model in Admin
+
+1. **Check Admin**: If the services model is not visible in the admin, register the model:
+   - Go to `admin.py` of the services app.
+   - Import the model class:
+     ```python
+     from services.models import Services
+     ```
+
+2. **Create an Admin Class**:
+   ```python
+   from django.contrib import admin
+
+   class ServicesAdmin(admin.ModelAdmin):
+       # Define the attributes to display in the admin panel
+       list_display = ('icon',)  # Add other attributes if needed
+
+   # Register the model with the admin class
+   admin.site.register(Services, ServicesAdmin)
+   ```

@@ -39,3 +39,4 @@ To connect pages and use the base template (`base.html`):
    ```
 
 Note: Replace `"content"` with the appropriate block name used in `base.html`.
+- If we want to link Header links to the specific page (/home, /about, /portfolio) then we have to do same endoint in our anker tag of html after making urlls.py and views.py. Or we can also use url name by giving (name="home") into urls path and using it in anchor tag ({ % url "home" % })

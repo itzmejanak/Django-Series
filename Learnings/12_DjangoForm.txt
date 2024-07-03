@@ -1,0 +1,54 @@
+## Django Forms
+
+To work with Django forms, we need to follow these steps:
+
+### 1. Create `forms.py`
+
+In your Django project, create a file named `forms.py`.
+
+### 2. Import Django Forms
+
+Import the forms module from Django:
+
+```python
+# forms.py
+from django import forms
+```
+
+### 3. Create a Form Class
+
+Create a form class with the necessary input fields:
+
+```python
+# forms.py
+class UserForm(forms.Form):
+    num1 = forms.CharField()
+    num2 = forms.CharField()
+```
+
+### 4. Use the Form in `views.py`
+
+In `views.py`, import the form class and create an instance of it:
+
+```python
+# views.py
+from django.shortcuts import render
+from .forms import UserForm
+
+def userFormView(request):
+    form = UserForm()  # Creating an instance of the form
+    return render(request, 'form.html', {'form': form})  # Passing the form instance to the template
+```
+
+### 5. Display the Form in HTML
+
+In your HTML file, use the form instance passed from the view:
+
+```html
+<!-- form.html -->
+<form method="post" action="{% url 'submitForm' %}">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+```

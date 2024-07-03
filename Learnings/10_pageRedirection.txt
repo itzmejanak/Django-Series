@@ -1,0 +1,40 @@
+## Page Redirection
+
+### Importing HttpResponseRedirect
+
+First, we need to use the `HttpResponseRedirect` method of Django by importing it.
+
+### Redirecting After Form Submission
+
+Lets say After form submission, we can easily redirect the page to another page in `views.py` like this:
+
+```python
+from django.http import HttpResponseRedirect
+
+def userForm(request):
+    try:
+        n1 = request.POST.get("num1")
+        n2 = request.POST.get("num2")
+        # Process data here
+    except:
+        pass
+    return HttpResponseRedirect('/home/')
+```
+
+## Redirecting with Data
+
+To redirect and pass data, simply use:
+
+```python
+def userForm(request):
+    try:
+        n1 = request.POST.get("num1")
+        n2 = request.POST.get("num2")
+        # Process data here
+        data = some_processed_data  # Replace with actual data
+        url = '/home/?output={}'.format(data)
+        return HttpResponseRedirect(url)
+    except:
+        pass
+    return render(request, "form.html")
+```
